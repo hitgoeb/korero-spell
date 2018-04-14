@@ -1,11 +1,18 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
+use Mojo::Log;
 use FindBin;
 use I18N::LangTags::List;
 use Text::Hunspell;
 use File::Temp qw/tempfile/;
 use Encode;
 use utf8;
+
+plugin Config => {default => {
+  loglevel => 'debug', }};
+
+my $log = Mojo::Log->new;
+$log->level(app->config('loglevel'));
 
 plugin 'RenderFile';
 
@@ -57,11 +64,12 @@ sub load_languages {
     $code =~ s/_/-/g;
     $languages{$code} = $dic;
 
-    if ($code =~ /^[a-z]+(-[a-zA-Z]+)?$/) {
+    # include sr-Latn-RS
+    if ($code =~ /^[a-z]+(-[a-zA-Z]+)*$/) {
       $language_names{$code} = I18N::LangTags::List::name($code) || $code;
     }
 
-    $app->log->info("Found dictionary $language_names{$code} ($code)");
+    $log->info("Found dictionary $language_names{$code} ($code)");
   }
 
   die "Cannot find Hunspell dictionaries in any of the following directories:\n  "
@@ -85,7 +93,7 @@ sub load_voices {
     $name = join(' ', map { $_ eq 'en' ? 'English' : ucfirst }
 		 split(/[ _-]+/, $name));
     $voices{$language} = $name;
-    $app->log->info("Found voice $name");
+    $log->info("Found voice $name");
   }
   close($fh);
 }
