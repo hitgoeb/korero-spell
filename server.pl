@@ -215,8 +215,6 @@ sub analysis_of {
   return ['correct', $word, $analysis];
 }
 
-app->log->level('info');
-app->log->info("Looking at $home");
 load_languages(app);
 load_voices(app);
 app->start;
