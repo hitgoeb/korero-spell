@@ -5,7 +5,7 @@ TRY airentsucldmogphbvfzxqjèéàkòwyüùöêîAIRENTSUCLDMOGPHBVFZXQJÈÉÀKÒ
 FLAG long
 NEEDAFFIX XX
 
-AF 32
+AF 33
 AF XXFsFp      # staila/1: staila, stailas [po:NOUN uf:Gender=Fem]
 AF XXMsMp      # caschiel/2: caschiel, caschiels [po:NOUN uf:Gender=Masc]
 AF XXAd        # abstract/3: abstract, abstracts, abstracta, abstractas [po:ADJ]
@@ -38,6 +38,7 @@ AF XXPj        # enqualche/29: [po:PRON PronType=Ind]
 AF XXTz        # *buer/30 [st:beiber]: buevel, buevas, ...; past tense of irregular verbs
 AF XXTx        # *buer/31 [st:beiber]: buius, buida, buis, buidas; part participle of irregular verbs
 AF XXPn        # Decurtins/32 [po:PROPN]
+AF XXAdc       # admirabel/33: admirabel, admirabels, admirabla, admirablas [po:ADJ]
 
 # Improve suggestions for common spelling mistakes.
 # *partescha --> parta
@@ -371,3 +372,12 @@ SFX Pm 0 0 . po:PROPN uf:Gender=Masc
 # Proper noun: Decurtins
 SFX Pn N 1
 SFX Pn 0 0 . po:PROPN
+
+# Adjectives: admirabel
+# admirabel, admirabels, admirabla, admirablas
+SFX Adc N 4
+SFX Adc 0 0 . po:ADJ uf:Gender=Masc|Number=Sing
+SFX Adc el la . po:ADJ uf:Gender=Fem|Number=Sing
+SFX Adc 0 s . po:ADJ uf:Gender=Masc|Number=Plur
+SFX Adc el las . po:ADJ uf:Gender=Fem|Number=Plur
+
